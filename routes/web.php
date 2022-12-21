@@ -19,8 +19,8 @@ Route::get('/', function () {
 });
 
 Route::controller(DemoConroller::class)->group(function() {
-    Route::get('/about', 'Index')->name('about.page');
-    Route::get('/contact', 'Contact')->name('contact.page');
+    Route::get('/about', 'Index')->name('about.page')->middleware('check');
+    Route::get('/contact', 'ContactMethod')->name('contact.page');
 });
 
 

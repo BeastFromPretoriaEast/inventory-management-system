@@ -11,7 +11,7 @@ class DemoConroller extends Controller
         return view('about');
     }
 
-    public function Contact() {
+    public function ContactMethod() {
         return view('contact');
     }
 }
