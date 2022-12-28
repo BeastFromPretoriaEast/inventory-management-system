@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesdesign" name="author" />
-    href="{{ asset('backend') }}
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.ico') }}">
 
@@ -20,11 +19,14 @@
     <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 
     <!-- Bootstrap Css -->
-    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
-    <link href="{{ asset('backend/assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body data-topbar="dark">
@@ -43,8 +45,11 @@
     <!-- Start right Content here -->
     <!-- ============================================================== -->
     <div class="main-content">
-
-        @yield('admin')
+        <div class="page-content">
+            <div class="container-fluid">
+                @yield('admin')
+            </div>
+        </div>
         <!-- End Page-content -->
 
         @include('admin.body.footer')
@@ -112,7 +117,7 @@
 <script src="{{ asset('backend/assets/libs/node-waves/waves.min.js') }}"></script>
 
 <!-- apexcharts -->
-<script src="{{ asset('backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
+{{--<script src="{{ asset('backend/assets/libs/apexcharts/apexcharts.min.js') }}"></script>--}}
 
 <!-- jquery.vectormap map -->
 <script src="{{ asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
@@ -126,10 +131,36 @@
 <script src="{{ asset('backend/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
 <script src="{{ asset('backend/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
 
-<script src="{{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>
+{{--<script src="{{ asset('backend/assets/js/pages/dashboard.init.js') }}"></script>--}}
 
 <!-- App js -->
 <script src="{{ asset('backend/assets/js/app.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script>
+    @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type', 'info') }}"
+        switch (type){
+            case 'info':
+                toastr.info("{{ Session::get('message') }}");
+                break;
+            case 'success':
+                toastr.success("{{ Session::get('message') }}");
+                break;
+            case 'warning':
+                toastr.warning("{{ Session::get('message') }}");
+                break;
+            case 'error':
+                toastr.error("{{ Session::get('message') }}");
+                break;
+        }
+    @endif
+</script>
+
+
+
+
+
+
 </body>
 
 </html>
