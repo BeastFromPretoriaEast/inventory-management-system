@@ -45,6 +45,11 @@
                                 About Multi Image
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('all.multi.image') }}">
+                                All Multi Image
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
